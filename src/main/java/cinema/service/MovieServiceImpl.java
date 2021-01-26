@@ -8,7 +8,6 @@ import java.util.List;
 
 @Service
 public class MovieServiceImpl implements MovieService {
-
     @Inject
     private MovieDao movieDao;
 
