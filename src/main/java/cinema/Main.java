@@ -1,8 +1,14 @@
 package cinema;
 
 import cinema.lib.Injector;
+import cinema.model.CinemaHall;
 import cinema.model.Movie;
+import cinema.model.MovieSession;
+import cinema.service.CinemaHallService;
 import cinema.service.MovieService;
+import cinema.service.MovieSessionService;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Main {
     private static Injector injector = Injector.getInstance("cinema");
@@ -13,5 +19,23 @@ public class Main {
         MovieService movieService = (MovieService) injector.getInstance(MovieService.class);
         movieService.add(movie);
         movieService.getAll().forEach(System.out::println);
+
+        CinemaHall cinemaHall = new CinemaHall();
+        cinemaHall.setCapacity(50);
+        cinemaHall.setDescription("Blue");
+        CinemaHallService cinemaHallService = (CinemaHallService) injector
+                .getInstance(CinemaHallService.class);
+        cinemaHallService.add(cinemaHall);
+        cinemaHallService.getAll().forEach(System.out::println);
+
+        MovieSession movieSession = new MovieSession();
+        movieSession.setMovie(movie);
+        movieSession.setCinemaHall(cinemaHall);
+        movieSession.setShowTime(LocalDateTime.of(2021, 2, 1, 20, 23));
+        MovieSessionService movieSessionService = (MovieSessionService) injector
+                .getInstance(MovieSessionService.class);
+        movieSessionService.add(movieSession);
+        movieSessionService.findAvailableSessions(movieSession.getId(), LocalDate.now())
+                .forEach(System.out::println);
     }
 }
