@@ -23,7 +23,8 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
             availableSessions.setParameter("date", date.format(DateTimeFormatter.ISO_LOCAL_DATE));
             return availableSessions.getResultList();
         } catch (Exception e) {
-            throw new DataProcessingException("Can`t find all available movie sessions", e);
+            throw new DataProcessingException("Can`t find all available movie sessions by id "
+                    + movieId + " on this date " + date, e);
         }
     }
 
