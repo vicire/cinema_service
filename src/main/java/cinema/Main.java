@@ -1,5 +1,6 @@
 package cinema;
 
+import cinema.exception.AuthenticationException;
 import cinema.lib.Injector;
 import cinema.model.CinemaHall;
 import cinema.model.Movie;
@@ -51,5 +52,11 @@ public class Main {
         System.out.println(shoppingCartService.getByUser(user));
         shoppingCartService.addSession(movieSession, user1);
         System.out.println(shoppingCartService.getByUser(user1));
+        try {
+            System.out.println(service.login("Human", "qwerty"));
+            System.out.println(service.login("Human", "qwerty1"));
+        } catch (AuthenticationException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
