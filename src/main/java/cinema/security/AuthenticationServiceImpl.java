@@ -6,7 +6,6 @@ import cinema.service.ShoppingCartService;
 import cinema.service.UserService;
 import cinema.util.HashUtil;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,7 +13,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
     private ShoppingCartService shoppingCartService;
 
-    @Autowired
     public AuthenticationServiceImpl(UserService userService,
                                      ShoppingCartService shoppingCartService) {
         this.userService = userService;
