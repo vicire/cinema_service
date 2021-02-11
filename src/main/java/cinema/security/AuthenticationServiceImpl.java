@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
-    private ShoppingCartService shoppingCartService;
+    private final ShoppingCartService shoppingCartService;
 
     public AuthenticationServiceImpl(UserService userService,
                                      ShoppingCartService shoppingCartService) {
