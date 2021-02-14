@@ -1,8 +1,10 @@
-package cinema.service;
+package cinema.service.impl;
 
 import cinema.dao.MovieDao;
 import cinema.model.Movie;
+import cinema.service.MovieService;
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +18,12 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public Movie add(Movie movie) {
         return movieDao.add(movie);
+    }
+
+    @Override
+    public Movie get(Long id) {
+        return movieDao.get(id).orElseThrow(() ->
+                new NoSuchElementException("Can`t find movie by id " + id));
     }
 
     @Override

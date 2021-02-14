@@ -1,5 +1,6 @@
-package cinema.dao;
+package cinema.dao.impl;
 
+import cinema.dao.ShoppingCartDao;
 import cinema.exception.DataProcessingException;
 import cinema.model.ShoppingCart;
 import cinema.model.User;
