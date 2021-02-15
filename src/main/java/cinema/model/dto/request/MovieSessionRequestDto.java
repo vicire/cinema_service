@@ -1,18 +1,9 @@
 package cinema.model.dto.request;
 
 public class MovieSessionRequestDto {
-    private Long movieSessionId;
     private String movieTime;
     private Long movieId;
     private Long cinemaHallId;
-
-    public Long getMovieSessionId() {
-        return movieSessionId;
-    }
-
-    public void setMovieSessionId(Long movieSessionId) {
-        this.movieSessionId = movieSessionId;
-    }
 
     public String getMovieTime() {
         return movieTime;
