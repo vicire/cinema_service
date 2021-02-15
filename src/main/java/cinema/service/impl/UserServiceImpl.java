@@ -4,6 +4,7 @@ import cinema.dao.UserDao;
 import cinema.model.User;
 import cinema.service.UserService;
 import cinema.util.HashUtil;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +28,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> findByEmail(String email) {
         return userDao.findByEmail(email);
+    }
+
+    @Override
+    public User get(Long id) {
+        return userDao.get(id).orElseThrow(()
+                -> new NoSuchElementException("There no user with id " + id));
     }
 }
