@@ -1,7 +1,8 @@
-package cinema.service;
+package cinema.service.impl;
 
 import cinema.dao.UserDao;
 import cinema.model.User;
+import cinema.service.UserService;
 import cinema.util.HashUtil;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
