@@ -49,7 +49,7 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable("id") Long id,
+    public void update(@PathVariable Long id,
                        @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionMapper.toMovieSessionEntity(movieSessionRequestDto);
         movieSession.setId(id);
@@ -57,7 +57,7 @@ public class MovieSessionController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id) {
+    public void delete(@PathVariable Long id) {
         movieSessionService.delete(id);
     }
 }
