@@ -6,7 +6,9 @@ import cinema.model.dto.response.CinemaHallResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CinemaHallMapper {
+public class CinemaHallMapper implements RequestDtoMapper<CinemaHall, CinemaHallRequestDto>,
+        ResponseDtoMapper<CinemaHallResponseDto, CinemaHall> {
+    @Override
     public CinemaHallResponseDto toDto(CinemaHall cinemaHall) {
         CinemaHallResponseDto cinemaHallResponseDto = new CinemaHallResponseDto();
         cinemaHallResponseDto.setCinemaHallId(cinemaHall.getId());
@@ -15,7 +17,8 @@ public class CinemaHallMapper {
         return cinemaHallResponseDto;
     }
 
-    public CinemaHall toCinemaHallEntity(CinemaHallRequestDto cinemaHallRequestDto) {
+    @Override
+    public CinemaHall toEntity(CinemaHallRequestDto cinemaHallRequestDto) {
         CinemaHall cinemaHall = new CinemaHall();
         cinemaHall.setDescription(cinemaHallRequestDto.getDescription());
         cinemaHall.setCapacity(cinemaHallRequestDto.getCapacity());

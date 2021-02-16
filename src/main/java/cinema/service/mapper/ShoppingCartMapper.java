@@ -7,7 +7,9 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ShoppingCartMapper {
+public class ShoppingCartMapper implements
+        ResponseDtoMapper<ShoppingCartResponseDto, ShoppingCart> {
+    @Override
     public ShoppingCartResponseDto toDto(ShoppingCart shoppingCart) {
         ShoppingCartResponseDto dto = new ShoppingCartResponseDto();
         dto.setId(shoppingCart.getId());

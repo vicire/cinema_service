@@ -5,7 +5,8 @@ import cinema.model.dto.response.UserResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper {
+public class UserMapper implements ResponseDtoMapper<UserResponseDto, User> {
+    @Override
     public UserResponseDto toDto(User user) {
         UserResponseDto dto = new UserResponseDto();
         dto.setUserId(user.getId());

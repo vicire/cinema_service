@@ -10,7 +10,8 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MovieSessionMapper {
+public class MovieSessionMapper implements RequestDtoMapper<MovieSession, MovieSessionRequestDto>,
+        ResponseDtoMapper<MovieSessionResponseDto, MovieSession> {
     private final MovieService movieService;
     private final CinemaHallService cinemaHallService;
 
@@ -19,6 +20,7 @@ public class MovieSessionMapper {
         this.cinemaHallService = cinemaHallService;
     }
 
+    @Override
     public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto dto = new MovieSessionResponseDto();
         dto.setMovieSessionId(movieSession.getId());
@@ -28,7 +30,8 @@ public class MovieSessionMapper {
         return dto;
     }
 
-    public MovieSession toMovieSessionEntity(MovieSessionRequestDto movieSessionRequestDto) {
+    @Override
+    public MovieSession toEntity(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movieService.get(movieSessionRequestDto.getMovieId()));
         movieSession.setCinemaHall(cinemaHallService.get(movieSessionRequestDto.getCinemaHallId()));
