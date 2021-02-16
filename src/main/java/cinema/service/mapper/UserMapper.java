@@ -9,7 +9,7 @@ public class UserMapper implements ResponseDtoMapper<UserResponseDto, User> {
     @Override
     public UserResponseDto toDto(User user) {
         UserResponseDto dto = new UserResponseDto();
-        dto.setUserId(user.getId());
+        dto.setId(user.getId());
         dto.setEmail(user.getEmail());
         return dto;
     }
