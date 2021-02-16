@@ -27,7 +27,7 @@ public class CinemaHallController {
 
     @PostMapping
     public void create(@RequestBody CinemaHallRequestDto cinemaHallDto) {
-        CinemaHall cinemaHall = cinemaHallMapper.toCinemaHallEntity(cinemaHallDto);
+        CinemaHall cinemaHall = cinemaHallMapper.toEntity(cinemaHallDto);
         cinemaHallService.add(cinemaHall);
     }
 

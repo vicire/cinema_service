@@ -33,7 +33,7 @@ public class MovieSessionController {
 
     @PostMapping
     public void create(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        MovieSession movieSession = movieSessionMapper.toMovieSessionEntity(movieSessionRequestDto);
+        MovieSession movieSession = movieSessionMapper.toEntity(movieSessionRequestDto);
         movieSessionService.add(movieSession);
     }
 
@@ -51,7 +51,7 @@ public class MovieSessionController {
     @PutMapping("/{id}")
     public void update(@PathVariable Long id,
                        @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        MovieSession movieSession = movieSessionMapper.toMovieSessionEntity(movieSessionRequestDto);
+        MovieSession movieSession = movieSessionMapper.toEntity(movieSessionRequestDto);
         movieSession.setId(id);
         movieSessionService.update(movieSession);
     }
