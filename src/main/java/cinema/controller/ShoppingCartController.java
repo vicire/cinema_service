@@ -7,6 +7,9 @@ import cinema.service.MovieSessionService;
 import cinema.service.ShoppingCartService;
 import cinema.service.UserService;
 import cinema.service.mapper.ShoppingCartMapper;
+import java.util.NoSuchElementException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,15 +34,20 @@ public class ShoppingCartController {
     }
 
     @PostMapping("/movie-sessions")
-    public void addMovieSession(@RequestParam Long userId,
+    public void addMovieSession(Authentication authentication,
                                                   @RequestParam Long movieSessionId) {
-        User user = userService.get(userId);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User user = userService.findByEmail(userDetails.getUsername()).orElseThrow(()
+                -> new NoSuchElementException("There are no user with such credentials"));
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         shoppingCartService.addSession(movieSession, user);
     }
 
     @GetMapping("/by-user")
-    public ShoppingCartResponseDto get(@RequestParam Long userId) {
-        return shoppingCartMapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
+    public ShoppingCartResponseDto get(Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User user = userService.findByEmail(userDetails.getUsername()).orElseThrow(()
+                -> new NoSuchElementException("There are no user with such credentials"));
+        return shoppingCartMapper.toDto(shoppingCartService.getByUser(user));
     }
 }
