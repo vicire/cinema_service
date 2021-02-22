@@ -38,19 +38,22 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Optional<User> findByEmail(String email) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("from User WHERE email = :email", User.class)
+            return session.createQuery("from User u join fetch u.roles "
+                    + "WHERE u.email = :email", User.class)
                     .setParameter("email", email).uniqueResultOptional();
         } catch (Exception e) {
-            throw new DataProcessingException("Can`t find user by email" + email, e);
+            throw new DataProcessingException("Can`t find user by email " + email, e);
         }
     }
 
     @Override
     public Optional<User> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return Optional.ofNullable(session.get(User.class, id));
+            return session.createQuery("from User u join fetch u.roles "
+                    + "WHERE u.id = :id", User.class)
+                    .setParameter("id", id).uniqueResultOptional();
         } catch (Exception e) {
-            throw new DataProcessingException("Can`t get user by id" + id, e);
+            throw new DataProcessingException("Can`t get user by id " + id, e);
         }
     }
 }
