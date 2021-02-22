@@ -5,7 +5,7 @@ import cinema.model.RoleName;
 import cinema.model.User;
 import cinema.service.RoleService;
 import cinema.service.UserService;
-import java.util.List;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
@@ -30,7 +30,7 @@ public class InjectData {
         User firstAdmin = new User();
         firstAdmin.setEmail("bohdan@gmail.com");
         firstAdmin.setPassword("12345");
-        firstAdmin.setRoles(List.of(admin));
+        firstAdmin.setRoles(Set.of(admin));
         userService.add(firstAdmin);
     }
 }
