@@ -1,4 +1,4 @@
-# Philharmonic
+# Philharmonic ticket shop
 
 This convenient web service allows customers to check
 available concerts in various philharmonics and book any available concert
