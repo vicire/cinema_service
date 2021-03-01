@@ -53,9 +53,9 @@ public class StageDaoImpl implements StageDao {
     @Override
     public List<Stage> getAll() {
         try (Session session = sessionFactory.openSession()) {
-            Query<Stage> getAllCinemaHalls = session.createQuery("from Stage ",
+            Query<Stage> getAllStages = session.createQuery("from Stage ",
                     Stage.class);
-            return getAllCinemaHalls.getResultList();
+            return getAllStages.getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Can`t get all stages", e);
         }
